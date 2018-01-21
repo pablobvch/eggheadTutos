@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+  <style>
+
+    .box{
+      border-style: solid;
+      width: 120px;
+    }
+
+    .box--small{
+      width: 60px;
+      height: 60px;
+    }
+
+    .box--medium{
+      width: 80px;
+      height: 80px;
+    }
+
+    .box--large{
+      width: 100px;
+      height: 100px;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+
+    const rootElement = document.getElementById('root');
+
+    function Box({
+      style,
+      size,
+      className='',
+      ...rest
+    }) {
+      const sizeClassName = size ? `box--${size}` : ''
+      return (
+        <div
+        className={`box ${className} ${sizeClassName}`.trim()}
+        style={{paddingLeft:20,...style}}
+        {...rest}
+        />
+      )
+    }
+
+    const element = (
+      <div>
+        <Box size='small' style={{backgroundColor: 'lightblue'}}>
+          small box
+        </Box>
+        <Box size='medium' style={{backgroundColor: 'pink'}}>
+          medium box
+        </Box>
+        <Box size='large' style={{backgroundColor: 'orange'}}>
+          large box
+        </Box>
+      </div>)
+
+    //investigar glamorous y styled componentes con REACT
+    ReactDOM.render(element,document.getElementById('root'))
+
+  </script>
+
+</body>
+
+</html>
